@@ -2,18 +2,20 @@ li = []
 
 
 def binary_search(arr, number, low, high):
-
-    while low <= high:
-        mid = low + (high-low)//2
+    if high >= low:
+        mid = (high + low) // 2
 
         if arr[mid] == number:
             return mid
-        elif arr[mid] < number:
-            low = mid + 1
-        else:
-            high = mid - 1
 
-    return -1
+        elif arr[mid] > number:
+            return binary_search(arr, number, low, mid-1)
+
+        else:
+            return binary_search(arr, number, mid+1, high)
+
+    else:
+        return -1
 
 
 print("Number of elements in list: ")
