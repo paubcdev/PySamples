@@ -1,9 +1,10 @@
 import random
 import re
-game_count = 0
+p_wins = 0
+c_wins = 0
 
 
-def check_result(player, computer):
+def check_result(player, computer, pl_wins, co_wins):
     win = 0
     if(player.upper() == "R" and computer == "R") or (player.upper() == "P" and computer == "P") or\
             (player.upper() == "S" and computer == "S"):
@@ -17,26 +18,33 @@ def check_result(player, computer):
 
     if win == 1:
         winner = "Player wins!"
+        pl_wins += 1
     elif win == 2:
         winner = "Computer wins!"
+        co_wins += 1
     else:
         winner = "It's a tie!"
 
-    return winner
+    return winner, pl_wins, co_wins
 
 
-while game_count < 3:
-
+while 1 < 2:
+    print("\n----------------------")
     print("Rock, Paper, Scissors - Go!")
     user_opt = input("Select: [R]ock, [P]aper, [S]cissors: ")
 
     if re.match("[RrPpSs]", user_opt):
         print("Your selection: %s " % user_opt.upper())
-        computer_opt = ["R", "P", "S"]
-        ch = random.choice(computer_opt)
-        print("Computer chose: %s " % ch)
-        result = check_result(user_opt, ch)
-        print(result)
-        game_count += 1
+        choices = ["R", "P", "S"]
+        computer_opt = random.choice(choices)
+        print("Computer chose: %s " % computer_opt)
+        result = check_result(user_opt, computer_opt, p_wins, c_wins)
+        print(result[0])
+        p_wins = result[1]
+        print("Player wins: %s" % p_wins)
+        c_wins = result[2]
+        print("Computer wins: %s" % c_wins)
+        if p_wins == 2 or c_wins == 2:
+            break
     else:
         print("Error, select one letter")
