@@ -33,7 +33,7 @@ while 1 < 2:
     print("Rock, Paper, Scissors - Go!")
     user_opt = input("Select: [R]ock, [P]aper, [S]cissors: ")
 
-    if re.match("[RrPpSs]", user_opt):
+    if re.match("[RrPpSs]", user_opt):  # Checks that only valid inputs are considered
         print("Your selection: %s " % user_opt.upper())
         choices = ["R", "P", "S"]
         computer_opt = random.choice(choices)
